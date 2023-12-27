@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Product = require("../models/admin");
+const profile = require("../models/profile");
 
 const bcrypt = require("bcrypt");
 module.exports = {
@@ -96,10 +97,101 @@ module.exports = {
     }
   },
 
-  profile: (request, response) => {
+  profile: async (request, response) => {
     const userEmail = request.session.email;
-    response.render("profile", { email: userEmail });
+    try {
+      const user = await User.findOne({ email: userEmail });
+
+      if (!user) {
+        return response.status(404).send("User not found");
+      }
+
+      const existingProfile = await profile.findOne({ userId: user._id });
+
+      response.render("profile", {
+        email: userEmail,
+        existingProfile,
+        userId: user._id,
+      });
+    } catch (error) {
+      console.error(error);
+      response.status(500).send("Internal Server Error");
+    }
   },
+
+  profilePost: async (request, response) => {
+    const { name, address, phoneNumber } = request.body;
+    const userEmail = request.session.email;
+
+    try {
+      // Find the User by email to get the userId
+      const user = await User.findOne({ email: userEmail });
+
+      if (user) {
+        // Get the userId from the user object
+        const userId = user._id;
+
+        // Check if the user's profile already exists by userId
+        const existingProfile = await profile.findOne({ userId });
+        console.log(existingProfile);
+
+        if (existingProfile) {
+          // If the profile exists, update it
+          existingProfile.name = name;
+          existingProfile.address = address;
+          existingProfile.phoneNumber = phoneNumber;
+          await existingProfile.save();
+        } else {
+          console.log("------else-----");
+          // If the profile doesn't exist, create a new one
+          const newProfile = new profile({
+            userId,
+            name,
+            address,
+            phoneNumber,
+          });
+          await newProfile.save();
+        }
+
+        response.redirect("/user/profile");
+      } else {
+        // Handle the case where the user doesn't exist
+        response.status(404).send("User not found");
+      }
+    } catch (error) {
+      console.error(error);
+      response.status(500).send("Internal Server Error");
+    }
+  },
+
+  editProfile: async (request, response) => {
+    const { editName, editAddress, editPhoneNumber } = request.body;
+    const userEmail = request.session.email;
+
+    try {
+      const user = await user.findOne({ email: userEmail });
+
+      if (user) {
+        const userId = user._id;
+        const existingProfile = await profile.findOne({ userId });
+
+        if (existingProfile) {
+          // Update the existing profile
+          existingProfile.name = editName;
+          existingProfile.address = editAddress;
+          existingProfile.phoneNumber = editPhoneNumber;
+          await existingProfile.save();
+          response.redirect("/user/profile");
+        }
+      } else {
+        response.status(404).send("User not found");
+      }
+    } catch (error) {
+      console.error(error);
+      response.status(500).send("Internal Server Error");
+    }
+  },
+
   admin: (request, response) => {
     if (request.session.email) {
       response.render("adminhome");

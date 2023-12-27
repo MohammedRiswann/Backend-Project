@@ -18,4 +18,5 @@ userRoute.post(
   updatedProduct
 );
 userRoute.get("/deleteProduct/:productId", deleteProduct);
+
 module.exports = userRoute;
