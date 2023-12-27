@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Website</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>My Fantastic Dark Green Website</title>
+        <style>
+          /* Global styles */
+          body {
+            background-color: #1e2f25; /* Deeper dark green */
+            font-family: "Poppins", sans-serif; /* Modern font */
+            color: #fff; /* White text color */
+            text-align: center; /* Center content */
+          }
+
+          header,
+          main,
+          footer,
+          section {
+            padding: 1.5rem;
+          }
+
+          h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+          }
+
+          h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+          }
+
+          p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+          }
+
+          a {
+            color: #c2e59c; /* Light green for links */
+            text-decoration: none;
+          }
+
+          /* Table styles */
+          table {
+            width: 80%;
+            margin: 0 auto; /* Center table */
+            border-collapse: collapse;
+            border-spacing: 0;
+          }
+
+          th,
+          td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #334737;
+          }
+
+          th {
+            font-weight: 600;
+            background-color: #25382d; /* Slightly darker background for headers */
+          }
+
+          /* Button styles */
+          button {
+            background-color: #385445; /* Darker green for buttons */
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out; /* Smooth hover effect */
+          }
+
+          button:hover {
+            background-color: #4a6959; /* Lighter green on hover */
+          }
+
+          /* Image styles */
+          img {
+            width: 150px;
+            height: auto;
+            object-fit: cover; /* Maintain aspect ratio */
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+          }
+
+          img:hover {
+            transform: scale(1.1); /* Zoom on hover */
+          }
+        </style>
+      </head>
+      <body></body>
+    </html>
+
+    <header>
+      <h1>Welcome to My Website!</h1>
+    </header>
+
+    <main>
+      <section>
+        <p><a href="/user/profile">Profile</a></p>
+      </section>
+
+      <section>
+        <h2>Product List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+
+              <th>Price</th>
+              <!-- Add more columns if needed -->
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(product => { %>
+            <tr>
+              <td><%= product.name %></td>
+              <td>
+                <img
+                  src="<%=product.imagePath.replace('public/uploads','')%>"
+                  style="width: 100px; height: auto"
+                />
+              </td>
+
+              <td>$<%= product.price %></td>
+              <!-- Add more columns if needed -->
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 MyWebsite</p>
+      <!-- Add footer content -->
+    </footer>
+
+    <button><a href="/user/logoutt">Log Out</a></button>
+  </body>
+</html>

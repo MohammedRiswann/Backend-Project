@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <style>
+      body {
+        background-color: #252a2f; /* Dark green background */
+        color: #fff; /* White text for contrast */
+        font-family: sans-serif;
+        font-size: 16px;
+        text-align: center; /* Center content for visual balance */
+      }
+
+      h1 {
+        color: #2ecc71; /* Vibrant green heading */
+        font-size: 2rem;
+        margin-top: 30px;
+      }
+
+      form {
+        border: 2px solid #343a40; /* Darker border for separation */
+        padding: 30px;
+        border-radius: 10px; /* Rounded corners for softness */
+        width: 300px;
+        margin: 0 auto;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #343a40; /* Darker border for input fields */
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 5px; /* Adjust spacing for error messages */
+      }
+
+      input[type="submit"] {
+        background-color: #2ecc71; /* Green button */
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #39b54a; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="/user/loginsucc" method="POST">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        value="riswan14.rm@gmail.com"
+      />
+      <p style="color: #95a5a6" id="mailError"></p>
+
+      <br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        onblur="validation()"
+      />
+      <p style="color: #95a5a6" id="passwordError"></p>
+      <br />
+
+      <input type="submit" value="Login" />
+    </form>
+    <script src="../validation/validation.js"></script>
+  </body>
+</html>

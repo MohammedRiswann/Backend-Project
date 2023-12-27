@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <style>
+      body {
+        background-color: #252a2f; /* Dark green background */
+        color: #fff; /* White text for contrast */
+        font-family: "Poppins", sans-serif; /* Modern font for a sleek look */
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .header {
+        background-color: #2ecc71;
+        padding: 20px 30px;
+        border-radius: 5px;
+        margin-bottom: 30px;
+      }
+
+      .sidebar {
+        background-color: #343a40;
+        width: 250px;
+        padding: 30px 20px;
+        border-radius: 5px;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+      }
+
+      nav a {
+        display: block;
+        padding: 10px 0;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      nav a:hover {
+        background-color: #4a555e;
+        color: #95a5a6;
+      }
+
+      .content {
+        padding: 0 30px;
+      }
+
+      section h2 {
+        margin-bottom: 20px;
+        color: #2ecc71;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Admin Dashboard</h1>
+      </div>
+
+      <aside class="sidebar">
+        <nav>
+          <ul>
+            <li><a href="/admin/addProduct">Add Products</a></li>
+            <li><a href="">See all users</a></li>
+            <li><a href="">Log Out</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section>
+          <h2>Welcome, Admin!</h2>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
