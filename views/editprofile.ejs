@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Edit Profile</title>
+    <style>
+      body {
+        background-color: #93c09f; /* Lighter green background */
+        color: #333; /* Dark text for contrast */
+        font-family: sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        padding: 20px 0;
+        color: #5cb860; /* Vibrant green for headings */
+      }
+
+      form {
+        width: 330px;
+        margin: 0 auto;
+        padding: 60px;
+        border-radius: 5px;
+        background-color: #a8d0b3; /* Slightly lighter than body */
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffffff; /* Vibrant green for labels */
+      }
+
+      input,
+      button {
+        width: 90%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #c8e2d0; /* Lightest green for input fields */
+        color: #333; /* Dark text for input values */
+        font-size: 16px;
+      }
+
+      button {
+        width: 315px;
+        background-color: #5cb860; /* Vibrant green for button */
+        cursor: pointer;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Edit Profile</h1>
+    <form action="/user/edit-profile" method="POST">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="<%= existingProfile.name %>"
+        required
+      />
+      <label for="address">Address:</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        value="<%= existingProfile.address %>"
+        required
+      />
+      <label for="phoneNumber">Phone Number:</label>
+      <input
+        type="text"
+        id="phoneNumber"
+        name="phoneNumber"
+        value="<%= existingProfile.phoneNumber %>"
+        required
+      />
+      <button type="submit">Save Changes</button>
+    </form>
+  </body>
+</html>

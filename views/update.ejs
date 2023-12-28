@@ -5,13 +5,13 @@
     <title>Update Product</title>
     <style>
       body {
-        background-color: #f0fff0; /* Soft green background */
+        background-color: #e8f5e9; /* Light green background */
         font-family: sans-serif;
         font-size: 16px;
       }
 
       h1 {
-        color: #27ae60; /* Vibrant green heading */
+        color: #27ae60; /* Vibrant green heading (optional) */
         text-align: center;
         font-size: 2rem;
         margin-top: 20px;
@@ -19,7 +19,7 @@
       }
 
       form {
-        border: 2px solid #2ecc71; /* Green border */
+        border: 2px solid #a5d6a7; /* Light green border */
         padding: 20px;
         border-radius: 10px; /* Rounded corners */
         width: 400px;
@@ -36,13 +36,13 @@
       input[type="file"] {
         width: 100%;
         padding: 10px;
-        border: 1px solid #27ae60; /* Green input borders */
+        border: 1px solid #a5d6a7; /* Light green input borders */
         border-radius: 5px;
         margin-bottom: 10px;
       }
 
       input[type="submit"] {
-        background-color: #2ecc71; /* Green button */
+        background-color: #a5d6a7; /* Light green button */
         color: white;
         padding: 12px 20px;
         border: none;
@@ -51,45 +51,11 @@
       }
 
       input[type="submit"]:hover {
-        background-color: #27ae60; /* Darker green on hover */
+        background-color: #2ecc71; /* Darker green on hover */
       }
     </style>
   </head>
   <body>
     <h1>Update Product</h1>
-    <form
-      action="/admin/updatedProduct/<%= id._id %>"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <label for="productName">Product Name:</label>
-      <input
-        type="text"
-        id="productName"
-        name="productName"
-        value="<%= id.name %>"
-        required
-      />
-      <br /><br />
-      <label for="productImage">Product Image:</label>
-      <input
-        type="file"
-        id="productImage"
-        name="productImage"
-        accept="image/*"
-        required
-      />
-      <br /><br />
-      <label for="productPrice">Product Price:</label>
-      <input
-        type="number"
-        id="productPrice"
-        name="productPrice"
-        value="<%= id.price %>"
-        required
-      />
-      <br /><br />
-      <input type="submit" value="Update Product" />
-    </form>
   </body>
 </html>

@@ -10,6 +10,8 @@ const { loginSuccess } = require("../controllers/mainController");
 const { profile } = require("../controllers/mainController");
 const { admin } = require("../controllers/mainController");
 const { profilePost } = require("../controllers/mainController");
+const { editProfile } = require("../controllers/mainController");
+const { editedprofile } = require("../controllers/mainController");
 
 const validateSignup = require("../validation/validationFile");
 userRoute.post("/loginsucc", validateSignup, loginSuccess);
@@ -20,8 +22,8 @@ userRoute.get("/login", login);
 userRoute.get("/logoutt", loginPost);
 userRoute.get("/profile", profile);
 userRoute.post("/profile", profilePost);
-
-userRoute.post("/edit-profile", profilePost);
+userRoute.get("/editprofile", editProfile);
+userRoute.post("/edit-profile", editedprofile);
 userRoute.get("/admin", admin);
 
 module.exports = userRoute;

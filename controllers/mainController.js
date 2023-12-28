@@ -130,6 +130,8 @@ module.exports = {
       if (user) {
         // Get the userId from the user object
         const userId = user._id;
+        console.log(userId);
+        console.log(user);
 
         // Check if the user's profile already exists by userId
         const existingProfile = await profile.findOne({ userId });
@@ -165,33 +167,65 @@ module.exports = {
   },
 
   editProfile: async (request, response) => {
-    const { editName, editAddress, editPhoneNumber } = request.body;
     const userEmail = request.session.email;
 
     try {
-      const user = await user.findOne({ email: userEmail });
+      // Find the User by email to get the userId
+      const user = await User.findOne({ email: userEmail });
 
-      if (user) {
-        const userId = user._id;
-        const existingProfile = await profile.findOne({ userId });
-
-        if (existingProfile) {
-          // Update the existing profile
-          existingProfile.name = editName;
-          existingProfile.address = editAddress;
-          existingProfile.phoneNumber = editPhoneNumber;
-          await existingProfile.save();
-          response.redirect("/user/profile");
-        }
-      } else {
-        response.status(404).send("User not found");
+      if (!user) {
+        return response.status(404).send("User not found");
       }
+
+      // Get the userId from the user object
+      const userId = user._id;
+
+      // Find the profile using userId
+      const existingProfile = await profile.findOne({ userId });
+
+      response.render("editprofile", { existingProfile });
     } catch (error) {
       console.error(error);
       response.status(500).send("Internal Server Error");
     }
   },
+  editedprofile: async (request, response) => {
+    try {
+      const { name, address, phoneNumber } = request.body;
+      const userEmail = request.session.email;
 
+      // Find the User by email to get the userId
+      const user = await User.findOne({ email: userEmail });
+
+      if (!user) {
+        return response.status(404).send("User not found");
+      }
+
+      // Get the userId from the user object
+      const userId = user._id;
+
+      // Find the profile using userId
+      const existingProfile = await profile.findOne({ userId });
+
+      if (!existingProfile) {
+        return response.status(404).send("Profile not found");
+      }
+
+      // Update the profile data
+      existingProfile.name = name;
+      existingProfile.address = address;
+      existingProfile.phoneNumber = phoneNumber;
+
+      // Save the updated profile
+      await existingProfile.save();
+
+      // Redirect to the user's profile page or any other appropriate page
+      response.redirect("/user/profile");
+    } catch (error) {
+      console.error(error);
+      response.status(500).send("Internal Server Error");
+    }
+  },
   admin: (request, response) => {
     if (request.session.email) {
       response.render("adminhome");
