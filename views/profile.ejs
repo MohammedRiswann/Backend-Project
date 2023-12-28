@@ -2,87 +2,47 @@
 <html lang="en">
   <head>
     <title>User Profile</title>
-    <style>
-      body {
-        font-family: sans-serif;
-      }
-
-      table {
-        border-collapse: collapse;
-        width: 800px;
-        margin: 40px auto;
-        font-size: 16px;
-      }
-
-      th,
-      td {
-        padding: 15px;
-        border: 1px solid #a5d6a7;
-      }
-
-      th {
-        background-color: #c8e6c9;
-        font-weight: bold;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-    </style>
+    <!-- Your styles -->
   </head>
   <body>
-    <table>
-      <thead>
-        <tr>
-          <th>Field</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if (email) { %>
-        <tr>
-          <td>Email</td>
-          <td><%= email %></td>
-        </tr>
-        <% if (existingProfile) { %> <% if (existingProfile.name) { %>
-        <tr>
-          <td>Name</td>
-          <td><%= existingProfile.name %></td>
-        </tr>
-        <% } %> <% if (existingProfile.address) { %>
-        <tr>
-          <td>Address</td>
-          <td><%= existingProfile.address %></td>
-        </tr>
-        <% } %> <% if (existingProfile.phoneNumber) { %>
-        <tr>
-          <td>Phone Number</td>
-          <td><%= existingProfile.phoneNumber %></td>
-        </tr>
-        <td colspan="2">
-          <a
-            href="/user/editprofile"
-            style="
-              background-color: #27ae60;
-              color: #fff;
-              padding: 10px 15px;
-              border-radius: 5px;
-              text-decoration: none;
-            "
-            >Edit Profile</a
-          >
-        </td>
+    <form action="/user/submit-form" method="POST">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        value="<%= data[0]?.fulldetails[0]?.name || '' %>"
+      />
 
-        <% } %> <% } else { %>
-        <tr>
-          <td colspan="2">No profile details available.</td>
-        </tr>
-        <% } %> <% } else { %>
-        <tr>
-          <td colspan="2">No user email available.</td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+      <label for="address">Address:</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        required
+        value="<%= data[0]?.fulldetails[0]?.address || '' %>"
+      />
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input
+        type="text"
+        id="phoneNumber"
+        name="phoneNumber"
+        required
+        value="<%= data[0]?.fulldetails[0]?.phoneNumber || '' %>"
+      />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        value="<%= data[0]?.email || '' %>"
+      />
+
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>

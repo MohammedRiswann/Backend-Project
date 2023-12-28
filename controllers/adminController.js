@@ -77,4 +77,7 @@ module.exports = {
       response.status(500).send("Internal Server Error");
     }
   },
+  userList: (request, response) => {
+    const userId = request.session.userId;
+  },
 };
